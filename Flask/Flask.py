@@ -103,7 +103,7 @@ def generate_T9(model, tokenizer, max_length, seed_text):
     yhat= ""
     with graph.as_default():
         yhat = model.predict(encoded, verbose=0)
-    maxs = [-1,-1,-1,-1]
+    maxs = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
     for i in range(len(yhat[0])):
         maxs = addmaxs(maxs,i,yhat)
     # map predicted word index to word

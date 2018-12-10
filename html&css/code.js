@@ -27,11 +27,11 @@ function request(idButton,callback) {
 		}
 	};
 	var text = document.getElementById(idButton).innerHTML
-  var sVar1 = encodeURIComponent(text);
+  var sVar1 = encodeURIComponent(document.getElementById("message").innerHTML+" "+text);
   //var sVar2 = encodeURIComponent("nothing wrong");
 
 	xhr.open("GET", "http://localhost:5000/api"+"?"+ "var=" + sVar1, true);
-
+	document.getElementById("message").innerHTML +=" "+text;
   //xhr.open("GET", "http://localhost:5000"+"?variable1=" + sVar1 + "&variable2= " + sVar2, true);
   xhr.send(null);
 	// xhr.open("POST", "http://localhost:5000/Contact", true);
@@ -41,7 +41,7 @@ function request(idButton,callback) {
 
 function readData(sData) {
 	// On peut maintenant traiter les données sans encombrer l'objet XHR.
-	alert("recu " + sData)
+	//alert("recu " + sData)
 	document.getElementById("1").innerHTML = sData.split(" ")[0];
 	document.getElementById("2").innerHTML = sData.split(" ")[1];
 	document.getElementById("3").innerHTML = sData.split(" ")[2];
