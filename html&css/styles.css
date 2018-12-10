@@ -1,0 +1,25 @@
+div{
+  /*background-color: #FFA500;
+  width: 1500px;
+  padding:20px;
+  border:20px solid #FF8C00;
+  margin: 0px auto;*/
+}
+
+h1{
+  text-align: center;
+}
+
+body{
+  background-color: orange;
+  border:10px solid #FF8C00;
+  margin: 0px auto;
+}
+
+p{
+  font-size: 14px;
+}
+
+/*.explication{
+  border: 3px solid #000000
+}*/
