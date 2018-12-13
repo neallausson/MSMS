@@ -21,6 +21,7 @@ CORS(app)
 global graph
 model = tf.keras.models.load_model("../test/LstmTest2/save/model5-50.hdf5",custom_objects=None,compile=True)
 graph = tf.get_default_graph()
+print("MISE EN PLACE DU GRAPH") 
 # with tf default graph  ,, graph defaut pour pas le multiplier par thread # par defaut normalement
 
 data =[]

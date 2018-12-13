@@ -1,3 +1,7 @@
+var compteur = 0;
+var data = null;
+
+
 function getXMLHttpRequest() {
 	var xhr = null;
 
@@ -19,15 +23,24 @@ function getXMLHttpRequest() {
 	return xhr;
 }
 
-function request(idButton,callback) {
+function request(idButton,callback,textToSend = "None") {
 	var xhr = getXMLHttpRequest();
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
 			callback(xhr.responseText);
 		}
 	};
-	var text = document.getElementById(idButton).innerHTML
-  var sVar1 = encodeURIComponent(document.getElementById("message").innerHTML+" "+text);
+	var text ;
+	var sVar1 ;
+	if (textToSend != "None") {
+		text = textToSend
+	  sVar1 = encodeURIComponent(document.getElementById("message").innerHTML+" "+text);
+	}
+	else {
+		text = document.getElementById(idButton).innerHTML
+	  sVar1 = encodeURIComponent(document.getElementById("message").innerHTML+" "+text);
+	}
+
   //var sVar2 = encodeURIComponent("nothing wrong");
 
 	xhr.open("GET", "http://localhost:5000/api"+"?"+ "var=" + sVar1, true);
@@ -42,11 +55,36 @@ function request(idButton,callback) {
 function readData(sData) {
 	// On peut maintenant traiter les données sans encombrer l'objet XHR.
 	//alert("recu " + sData)
-	document.getElementById("1").innerHTML = sData.split(" ")[0];
-	document.getElementById("2").innerHTML = sData.split(" ")[1];
-	document.getElementById("3").innerHTML = sData.split(" ")[2];
-	document.getElementById("4").innerHTML = sData.split(" ")[3];
+	data = sData.split(" ");
+	document.getElementById("1").innerHTML = data[0];
+	document.getElementById("2").innerHTML = data[1];
+	document.getElementById("3").innerHTML = data[2];
+	document.getElementById("4").innerHTML = data[3];
 
+	compteur = 0;
+
+	//alert("C'est bon");
+}
+
+function nextFunction() {
+	// On peut maintenant traiter les données sans encombrer l'objet XHR.
+	//alert("recu " + sData)
+	if (compteur < 2) {
+		compteur += 1;
+	}
+
+	document.getElementById("1").innerHTML = data[0+(4*compteur)];
+	document.getElementById("2").innerHTML = data[1+(4*compteur)];
+	document.getElementById("3").innerHTML = data[2+(4*compteur)];
+	document.getElementById("4").innerHTML = data[3+(4*compteur)];
+
+	//alert("C'est bon");
+}
+
+function sendFunction() {
+	document.getElementById("sendedMessage").innerHTML += "<br>"+document.getElementById("message").innerHTML ;
+	document.getElementById("message").innerHTML ="";
+	request("1",readData,"")
 	//alert("C'est bon");
 }
 
