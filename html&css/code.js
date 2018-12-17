@@ -82,8 +82,8 @@ function nextFunction() {
 }
 
 function sendFunction() {
-	document.getElementById("sendedMessage").innerHTML += "<br>"+document.getElementById("message").innerHTML ;
-	document.getElementById("message").innerHTML ="";
+	document.getElementById("sendedMessage").innerHTML += "<br>"+document.getElementById("message").innerHTML.split("Message :") ;
+	document.getElementById("message").innerHTML ="Message :";
 	request("1",readData,"")
 	//alert("C'est bon");
 }

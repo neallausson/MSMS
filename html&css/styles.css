@@ -20,6 +20,54 @@ p{
   font-size: 14px;
 }
 
+.choice {
+  background-color: #4CAF50;
+  border-radius: 4px;
+  font-size: 24px;
+  /*padding: 28px 80px*/;
+  height: 120px;
+  width: 250px;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  border: none;
+  box-shadow: 0 9px #999;}
+
+.choice:hover {background-color: #3e8e41}
+
+.choice:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
+.action {
+    background-color: #B43047;
+    border-radius: 4px;
+    font-size: 48px;
+    /*padding: 21px 60px;*/
+    height: 120px;
+    width: 250px;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    border: none;
+    box-shadow: 0 9px #999;}
+
+.action:hover {background-color: #902638}
+
+.action:active {
+      background-color: #902638;
+      box-shadow: 0 5px #666;
+      transform: translateY(4px);
+    }
+
 /*.explication{
   border: 3px solid #000000
 }*/

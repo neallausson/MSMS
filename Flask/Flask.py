@@ -19,13 +19,13 @@ app = Flask(__name__)
 CORS(app)
 
 global graph
-model = tf.keras.models.load_model("../test/LstmTest2/save/model5-50.hdf5",custom_objects=None,compile=True)
+model = tf.keras.models.load_model("../testLS/LstmTest2/save/model5-50.hdf5",custom_objects=None,compile=True)
 graph = tf.get_default_graph()
-print("MISE EN PLACE DU GRAPH") 
+print("MISE EN PLACE DU GRAPH")
 # with tf default graph  ,, graph defaut pour pas le multiplier par thread # par defaut normalement
 
 data =[]
-tree = etree.parse("../test/datasetSMS/dataSMS3.xml")
+tree = etree.parse("../testLS/datasetSMS/dataSMS3.xml")
 compteur = 0
 for sms in tree.xpath("/corpus/sms/cont"):
     compteur +=1
@@ -91,8 +91,8 @@ def addmaxs(maxs,index,yhat):
 			maxs[i]=index
 			break
 		if yhat[0][index]>yhat[0][maxs[i]]:
-			for j in range(i,len(maxs)-2):
-				maxs[len(maxs)-j-1]=maxs[len(maxs)-j-2]
+			for j in range(len(maxs)-1,i,-1):
+				maxs[j]=maxs[j-1]
 			maxs[i]=index
 			break
 	return maxs
