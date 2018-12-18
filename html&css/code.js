@@ -69,7 +69,7 @@ function readData(sData) {
 function nextFunction() {
 	// On peut maintenant traiter les données sans encombrer l'objet XHR.
 	//alert("recu " + sData)
-	if (compteur < 2) {
+	if (compteur < 9) {
 		compteur += 1;
 	}
 
@@ -82,7 +82,7 @@ function nextFunction() {
 }
 
 function sendFunction() {
-	document.getElementById("sendedMessage").innerHTML += "<br>"+document.getElementById("message").innerHTML.split("Message :") ;
+	document.getElementById("sendedMessage").innerHTML += "<br><mark>  "+document.getElementById("message").innerHTML.split("Message :")+"  </mark>" ;
 	document.getElementById("message").innerHTML ="Message :";
 	request("1",readData,"")
 	//alert("C'est bon");

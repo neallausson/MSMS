@@ -22,6 +22,7 @@ global graph
 model = tf.keras.models.load_model("../testLS/LstmTest2/save/model5-50.hdf5",custom_objects=None,compile=True)
 graph = tf.get_default_graph()
 print("MISE EN PLACE DU GRAPH")
+
 # with tf default graph  ,, graph defaut pour pas le multiplier par thread # par defaut normalement
 
 data =[]
@@ -102,9 +103,10 @@ def generate_T9(model, tokenizer, max_length, seed_text):
     encoded = tokenizer.texts_to_sequences([in_text])[0]
     encoded = pad_sequences([encoded], maxlen=max_length, padding='pre')
     yhat= ""
+    global graph
     with graph.as_default():
         yhat = model.predict(encoded, verbose=0)
-    maxs = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+    maxs = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
     for i in range(len(yhat[0])):
         maxs = addmaxs(maxs,i,yhat)
     # map predicted word index to word
