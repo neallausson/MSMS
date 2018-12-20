@@ -18,7 +18,9 @@ from lxml import etree
 app = Flask(__name__)
 CORS(app)
 
-global graph
+global graph,model
+gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.5)
+sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options, log_device_placement=True))
 model = tf.keras.models.load_model("../testLS/LstmTest2/save/model5-50.hdf5",custom_objects=None,compile=True)
 graph = tf.get_default_graph()
 print("MISE EN PLACE DU GRAPH")
@@ -64,7 +66,7 @@ def parse_request():
     print('une requete', file=sys.stdout)
     data = request.args
     print(str(data["var"]), file=sys.stdout)
-    reponse = generate_T9(model,tokenizer, max_length-1,data["var"])
+    reponse = generate_T9(tokenizer, max_length-1,data["var"])
     print(str(reponse), file=sys.stdout)
     return  str(reponse)
 
@@ -98,12 +100,12 @@ def addmaxs(maxs,index,yhat):
 			break
 	return maxs
 
-def generate_T9(model, tokenizer, max_length, seed_text):
+def generate_T9(tokenizer, max_length, seed_text):
     in_text = seed_text
     encoded = tokenizer.texts_to_sequences([in_text])[0]
     encoded = pad_sequences([encoded], maxlen=max_length, padding='pre')
     yhat= ""
-    global graph
+    global graph,model
     with graph.as_default():
         yhat = model.predict(encoded, verbose=0)
     maxs = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
